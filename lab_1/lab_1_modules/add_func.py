@@ -8,7 +8,7 @@ def sum_func(x: float):
     :param x: int - first number for sum
     :return: inner function
     """
-    def add_inner(y: float) -> int:
+    def add_inner(y: float) -> float:
         """
 
         :param
