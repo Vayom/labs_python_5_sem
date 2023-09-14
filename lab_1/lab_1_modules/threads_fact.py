@@ -1,6 +1,13 @@
 import threading
 from .fact import factorial
 from .logger_module import logger
+from lab_1.lab_1_modules.decorator_class import ProfileDecorator
+
+
+@ProfileDecorator
+def compute_chunk(start_num, end_num, result_list):
+    result_fact = factorial(start=start_num, number=end_num)
+    result_list.append(result_fact)
 
 
 def threading_fact(number: int, num_threads: int) -> int:
@@ -20,10 +27,6 @@ def threading_fact(number: int, num_threads: int) -> int:
         chunk_size = (number - num_threads) // num_threads  # Divide the calculations into parts for each thread
         threads = []
         results = []
-
-        def compute_chunk(start_num, end_num, result_list):
-            result_fact = factorial(start=start_num, number=end_num)
-            result_list.append(result_fact)
 
         start = 1
         for _ in range(num_threads):
