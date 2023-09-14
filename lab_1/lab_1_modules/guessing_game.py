@@ -4,8 +4,6 @@ import random
 
 def guessing_game() -> None:
     attempts = 0
-    left_border = 0
-    right_border = 10
     print("Game Started\n"
           "Enter the left and right boundaries of the range")
     loop = True

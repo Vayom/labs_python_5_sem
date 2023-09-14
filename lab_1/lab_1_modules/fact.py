@@ -30,7 +30,7 @@ def search_fact() -> None:
     """
     user_number = None
     result = None
-    logger.info('This program calculates the factorial of a number')
+    print('This program calculates the factorial of a number')
     loop = True
     while loop:
         try:
