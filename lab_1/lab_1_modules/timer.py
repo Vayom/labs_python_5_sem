@@ -20,6 +20,6 @@ def timer_func(func):
         end_time = time.time()
         execution_time = end_time - start_time
         logger.info(f"Время выполнения для {func.__name__}: {execution_time} секунд")
-        return result
+        return execution_time
 
     return wrapper

@@ -79,7 +79,8 @@ def start():
                 continue
         elif selected_action == 5:
             decorated_timer_func = lab_1_modules.timer_func(example_timer_func)
-            decorated_timer_func()
+            print(decorated_timer_func())
+            example_timer_func()
         elif selected_action == 6:
             try:
                 number = int(input('Enter your number\n'))

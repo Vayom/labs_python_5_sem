@@ -1,0 +1,52 @@
+def take_file_path() -> str:
+    """
+        Function for reading the file path
+        :return: a file path
+        """
+    path = input('Input your file path\n')
+    return path
+
+
+def text_is_empty(file_text):
+    file_words = file_text.split()
+    if not file_words:
+        return True
+    else:
+        return False
+
+
+def find_most_popular_words(file_text: str) -> str:
+    words_count = {}
+    file_words = file_text.split()
+    for word in file_words:
+        if word not in words_count:
+            words_count[word] = 0
+        words_count[word] += 1
+    sorted_tuple = sorted(words_count.items(), key=lambda x: x[1])
+    # print(sorted_tuple)
+    return sorted_tuple[-1][0]
+
+
+def count_words(file_text: str) -> int:
+    words = file_text.split()
+    return len(words)
+
+
+def number_of_characters(file_text: str) -> int:
+    return len(file_text)
+
+
+file_path = take_file_path()
+try:
+    with open(file_path) as f:
+        text = f.read()
+        # print(text)
+        if not text_is_empty(text):
+            most_popular_word = find_most_popular_words(text)
+            print(f'The most popular word - {most_popular_word}')
+            print(f'Number of words - {count_words(text)}')
+            print(f'Number of characters - {number_of_characters(text)}')
+        else:
+            print('Text is empty')
+except FileNotFoundError:
+    print('No such file or directory')
