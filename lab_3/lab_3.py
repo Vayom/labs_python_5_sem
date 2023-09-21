@@ -1,13 +1,18 @@
 def take_file_path() -> str:
     """
-        Function for reading the file path
+    Function for reading the file path
         :return: a file path
-        """
+    """
     path = input('Input your file path\n')
     return path
 
 
 def text_is_empty(file_text):
+    """
+    Function to check the emptiness of the text
+        :param file_text: str - text file
+        :return: bool - file is empty
+    """
     file_words = file_text.split()
     if not file_words:
         return True
@@ -16,6 +21,11 @@ def text_is_empty(file_text):
 
 
 def find_most_popular_words(file_text: str) -> str:
+    """
+    Function to search for the most popular word
+        :param file_text: str - text file
+        :return: str - most popular word
+    """
     words_count = {}
     file_words = file_text.split()
     for word in file_words:
@@ -28,11 +38,21 @@ def find_most_popular_words(file_text: str) -> str:
 
 
 def count_words(file_text: str) -> int:
+    """
+    Function for counting the number of words
+        :param file_text: str - text file
+        :return: int - Number of words
+    """
     words = file_text.split()
     return len(words)
 
 
 def number_of_characters(file_text: str) -> int:
+    """
+    Function for counting the number of words
+        :param file_text: str - text file
+        :return: int - Number of characters
+    """
     return len(file_text)
 
 
@@ -50,3 +70,5 @@ try:
             print('Text is empty')
 except FileNotFoundError:
     print('No such file or directory')
+except Exception as error:
+    print(error)
