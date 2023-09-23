@@ -1,13 +1,20 @@
 import re
 
+
+def split_file_test(file_text):
+    pattern = r'[/\\,.;!?|\'/()@\-\+ \\"{}\n\t_]+'
+    file_words = re.split(pattern, file_text)
+    file_words.remove('')
+    return file_words
+
+
 def text_is_empty(file_text):
     """
     Function to check the emptiness of the text
         :param file_text: str - text file
         :return: bool - file is empty
     """
-    pattern = r'[/\\,.;!?|\'/()@\-\+ \\"{}\n\t_]+'
-    file_words = re.split(pattern, text)
+    file_words = split_file_test(file_text)
     if not file_words:
         return True
     else:
@@ -21,8 +28,7 @@ def find_most_popular_words(file_text: str) -> str:
         :return: str - most popular word
     """
     words_count = {}
-    pattern = r'[\[\]/\\,.;!:=?|\'/()@\-\+ \"{}\n\t\r]+'
-    file_words = re.split(pattern, text)
+    file_words = split_file_test(file_text)
     for word in file_words:
         if word != '':
             if word not in words_count:
@@ -40,9 +46,8 @@ def count_words(file_text: str) -> int:
         :param file_text: str - text file
         :return: int - Number of words
     """
-    pattern = r'[\[\]/\\,.;!:=?|\'/()@\-\+ \"{}\n\t\r]+'
-
-    words = re.split(pattern, text)
+    words = file_words = split_file_test(file_text)
+    print(words)
     return len(words)
 
 
