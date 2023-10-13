@@ -6,7 +6,7 @@ class OilField:
         self.water_volume = water_volume
         self.boreholes = []
 
-    def add_borehole(self, well):
+    def add_borehole(self, well): #null
         self.boreholes.append(well)
 
     def remove_borehole(self, well):
@@ -59,10 +59,4 @@ class OilField:
                 if count == number:
                     return borehole
 
-    def show_parameters(self):
-        print(f"Gas volume: {self.gas_volume}")
-        print(f"Oil volume: {self.oil_volume}")
-        print(f"Water volume: {self.water_volume}")
-        print("Wells:")
-        for borehole in self.boreholes:
-            borehole.show_parameters()
+

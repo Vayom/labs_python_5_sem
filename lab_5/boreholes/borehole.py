@@ -21,13 +21,10 @@ class Borehole:
         elif self.level == 3:
             self.speed = 30
 
-    def set_parameters(self, contents_volume):
+    def set_parameters(self, contents_volume, level):
         self.contents_volume = contents_volume
-
-    def show_parameters(self):
-        print(f"Well Type: {self.borehole_type}")
-        print(f"Contents Volume: {self.contents_volume}")
-        print(f"Status: {'Enabled' if self.is_enabled else 'Disabled'}")
+        self.level = level
+        self.calculate_speed()
 
     def __str__(self):
-        return f'{self.borehole_type} - {self.level}'
+        return f'{self.borehole_type} - {self.level}, {self.speed}'
