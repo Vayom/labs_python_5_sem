@@ -1,5 +1,7 @@
-from lab_5.boreholes.field_borehole import FuelBorehole
-from lab_5.boreholes.oil_borehole import OilBorehole
+from .fuel_borehole import FuelBorehole
+from .oil_borehole import OilBorehole
+from .gas_borehole import GasBorehole
+from .injection_borehole import InjectionBorehole
 
 
 class OilField:
@@ -11,10 +13,10 @@ class OilField:
         self.fuel_boreholes = []
         self.injection_boreholes = []
 
-    def add_fuel_borehole(self, borehole):  # null
+    def add_borehole(self, borehole):  # null
         if isinstance(borehole, FuelBorehole):
             self.fuel_boreholes.append(borehole)
-        else:
+        elif isinstance(borehole, InjectionBorehole):
             self.injection_boreholes.append(borehole)
 
     def remove_borehole(self, well):
@@ -26,19 +28,20 @@ class OilField:
     def pump_water(self):
         if self.injection_boreholes:
             for borehole in self.injection_boreholes:
-                self.water_volume += borehole.give_water
+                if borehole.is_enabled:
+                    self.water_volume += borehole.give_water()
 
     def pump_fuel(self):
         for borehole in self.fuel_boreholes:
-            if isinstance(borehole, OilBorehole):
-                if self.water_volume >= borehole.need_water:
-                    self.oil_volume += borehole.give_oil(borehole.need_water)
-            else:
-                if self.water_volume >= borehole.need_water:
-                    self.gas_volume += borehole.give_oil(borehole.need_water)
-                else:
-                    print('Вода закончилась')
-                    break
+            if borehole.is_enabled:
+                if isinstance(borehole, OilBorehole):
+                    if self.water_volume >= borehole.need_water:
+                        self.oil_volume += borehole.give_oil(borehole.need_water)
+                        self.water_volume -= borehole.need_water
+                elif isinstance(borehole, GasBorehole):
+                    if self.water_volume >= borehole.need_water:
+                        self.gas_volume += borehole.give_oil(borehole.need_water)
+                        self.water_volume -= borehole.need_water
 
     def show_boreholes(self):
         count = 1
@@ -48,3 +51,7 @@ class OilField:
         for borehole in self.injection_boreholes:
             print(f'{count}) {borehole}')
             count += 1
+
+
+if __name__ == '__main__':
+    pass

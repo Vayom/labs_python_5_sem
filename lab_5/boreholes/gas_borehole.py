@@ -1,4 +1,4 @@
-from .field_borehole import FuelBorehole
+from .fuel_borehole import FuelBorehole
 
 
 class GasBorehole(FuelBorehole):
@@ -7,4 +7,8 @@ class GasBorehole(FuelBorehole):
         self.need_water = 3
 
     def __str__(self):
-        return f'{type(self)} - {self.level} - уровня. Добыто - {self.stats_pump_fuel} единиц газа'
+        return f'Газовая скважина - {self.level} - уровня. Добыто - {self.stats_pump_fuel} единиц газа'
+
+
+if __name__ == '__main__':
+    pass

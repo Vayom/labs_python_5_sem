@@ -8,8 +8,13 @@ class FuelBorehole(Borehole):
         self.stats_pump_fuel = 0
 
     def give_oil(self, water):
-        if water > self.need_water:
+        if water >= self.need_water:
             self.stats_pump_fuel += self.speed
             return self.speed
+
     def __str__(self):
-        return f'{type(self)} - {self.level} - уровня. Добыто - {self.stats_pump_fuel}'
+        return f'Добывающая скважина - {self.level} - уровня. Добыто - {self.stats_pump_fuel}'
+
+
+if __name__ == "__main__":
+    pass
