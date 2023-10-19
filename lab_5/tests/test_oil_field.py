@@ -82,8 +82,6 @@ class TestOilField(unittest.TestCase):
         oil_field.pump_water()
         oil_field.pump_fuel()
 
-        # Создаем объекты borehole и добавляем их в oil_field.fuel_boreholes и oil_field.injection_boreholes
-
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             oil_field.show_boreholes()
             output = mock_stdout.getvalue()
